@@ -101,6 +101,7 @@
     wireguard-tools # To make keys and stuff
     alejandra # Autoformatting of .nix files
     git # Version control, you know what git does...
+    libnotify # Desktop notifications used when rebuilding nix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
