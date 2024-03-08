@@ -103,6 +103,7 @@
     git # Version control, you know what git does...
     libnotify # Desktop notifications used when rebuilding nix
     super-slicer-latest # 3D printer slicer forked from PrusaSlicer but better
+    joplin-desktop # My current notes app of choice
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
