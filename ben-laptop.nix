@@ -126,7 +126,7 @@
 
   # Enable SSH key authentication
   users.users."ben".openssh.authorizedKeys.keyFiles = [
-    /etc/nixos/ssh/authorized_keys
+    ./ssh/authorized_keys
   ];
 
   # Open ports in the firewall.
