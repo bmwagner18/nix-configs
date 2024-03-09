@@ -9,7 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     # ./hardware-configuration.nix
-    # ./modules/ben-laptop-wg.nix # Wireguard confirmation for this system
+    ./modules/ben-laptop-wg.nix # Wireguard confirmation for this system
   ];
 
   # Bootloader.
