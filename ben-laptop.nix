@@ -105,7 +105,6 @@
     libnotify # Desktop notifications used when rebuilding nix
     super-slicer-latest # 3D printer slicer forked from PrusaSlicer but better
     joplin-desktop # My current notes app of choice
-    libreoffice-qt # I need an office suite
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
