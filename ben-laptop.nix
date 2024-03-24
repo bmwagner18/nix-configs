@@ -102,7 +102,7 @@
   users.users.ben = {
     isNormalUser = true;
     description = "Ben";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       firefox
       #  thunderbird
