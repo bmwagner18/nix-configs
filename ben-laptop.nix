@@ -129,10 +129,12 @@
     # docker # My container manager of choise at the moment
   ];
 
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  virtualisation.docker.enable = true;
+
+  #   virtualisation.docker.rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
