@@ -125,6 +125,8 @@
     joplin-desktop # My current notes app of choice
     slack # Messaging app
     discord # Other messaging app
+    distrobox # Run another distro in the shell easily
+    docker # My container manager of choise at the moment
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
