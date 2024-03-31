@@ -126,7 +126,7 @@
     slack # Messaging app
     discord # Other messaging app
     distrobox # Run another distro in the shell easily
-    # docker # My container manager of choise at the moment
+    vlc # Versatile media player
   ];
 
   virtualisation.docker.enable = true;
