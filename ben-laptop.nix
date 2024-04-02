@@ -127,6 +127,7 @@
     discord # Other messaging app
     distrobox # Run another distro in the shell easily
     vlc # Versatile media player
+    jellyfin-media-player # Desktop jellyfin client
   ];
 
   virtualisation.docker.enable = true;
