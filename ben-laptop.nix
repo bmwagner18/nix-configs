@@ -128,6 +128,7 @@
     distrobox # Run another distro in the shell easily
     vlc # Versatile media player
     jellyfin-media-player # Desktop jellyfin client
+    usbutils # Tools for usb related stuff
   ];
 
   virtualisation.docker.enable = true;
