@@ -129,6 +129,7 @@
     vlc # Versatile media player
     jellyfin-media-player # Desktop jellyfin client
     usbutils # Tools for usb related stuff
+    mullvad # Mullvad VPN
     mullvad-vpn # GUI for Mullvad
   ];
 
