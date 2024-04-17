@@ -129,6 +129,7 @@
     vlc # Versatile media player
     jellyfin-media-player # Desktop jellyfin client
     usbutils # Tools for usb related stuff
+    mullvad-vpn # GUI for Mullvad
   ];
 
   virtualisation.docker.enable = true;
