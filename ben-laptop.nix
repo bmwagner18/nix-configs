@@ -165,6 +165,12 @@
     ./ssh/authorized_keys
   ];
 
+  # Set default editor to neovim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
