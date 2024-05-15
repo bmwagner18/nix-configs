@@ -115,7 +115,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     vscode # I want to tell people I can use vim but I really a vscode noob
     wireguard-tools # To make keys and stuff
     alejandra # Autoformatting of .nix files
