@@ -131,6 +131,7 @@
     usbutils # Tools for usb related stuff
     mullvad # Mullvad VPN
     mullvad-vpn # GUI for Mullvad
+    neovim # I'm going to actually try to use this one
   ];
 
   virtualisation.docker.enable = true;
