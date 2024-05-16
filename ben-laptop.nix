@@ -10,6 +10,7 @@
     # Include the results of the hardware scan.
     # ./hardware-configuration.nix
     # ./modules/ben-laptop-wg.nix # Wireguard confirmation for this system
+    <home-manager/nixos>
   ];
 
   # Bootloader.
@@ -131,6 +132,7 @@
     usbutils # Tools for usb related stuff
     mullvad # Mullvad VPN
     mullvad-vpn # GUI for Mullvad
+    gnome-network-displays # For miracast displays
   ];
 
   virtualisation.docker.enable = true;
