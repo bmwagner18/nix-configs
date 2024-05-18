@@ -12,13 +12,13 @@ fi
 # nix-shell -p git --command "git clone https://github.com/bmwagner18/nix-configs $SCRIPT_DIR"
 
 # Generate hardware config for new system
-sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
+# sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix
 
 # Open up editor to manually edit flake.nix before install
-if [ -z "$EDITOR" ]; then
-    EDITOR=nano;
-fi
-$EDITOR $SCRIPT_DIR/flake.nix;
+# if [ -z "$EDITOR" ]; then
+#     EDITOR=nano;
+# fi
+# $EDITOR $SCRIPT_DIR/flake.nix;
 
 # Rebuild system
 sudo nixos-rebuild switch --flake $SCRIPT_DIR#system;

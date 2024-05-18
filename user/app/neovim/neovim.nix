@@ -1,6 +1,8 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, ...}:
 
 {
-  home.packages = [ pkgs.neovim ];
-#   program.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 }

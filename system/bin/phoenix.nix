@@ -47,6 +47,19 @@ let myScript = ''
           sudo nix-collect-garbage --delete-older-than 30d;
           nix-collect-garbage --delete-older-than 30d;
         fi
+        elif [ "$1" = "edit" ]; then
+        if ["$#" = 1 ]; then
+          $EDITOR ''+userSettings.nixconfigsDir+''/hosts/$HOSTNAME/home.nix;
+          exit 0;
+        elif [ "$2" = flake ]; then
+          $EDITOR ''+userSettings.nixconfigsDir+''/flake.nix;
+          exit 0;
+        elif [ "$2" = config ]; then
+          $EDITOR ''+userSettings.nixconfigsDir+''/hosts/$HOSTNAME/configuration.nix;
+          exit 0;
+        else
+          echo "Please pass 'flake' or 'config'. No second arg opens 'home'"
+        fi
       fi
     '';
 in

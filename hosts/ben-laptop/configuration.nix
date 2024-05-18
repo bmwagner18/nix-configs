@@ -8,8 +8,9 @@
     [ ../../system/hardware-configuration.nix
       ( import ../../system/app/docker.nix {storageDriver = null; inherit pkgs userSettings lib;} )
       ../../system/security/firewall.nix
-      ../../system/security/sshd.nix
-      ../../system/wm/x11-gnome.nix
+      ../../system/security/ssh/sshd.nix
+      # ../../system/wm/gnome.nix
+      ../../system/wm/plasma.nix
       ../../system/services/printing.nix
       ../../system/services/sound.nix
     ];
@@ -38,7 +39,6 @@
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
   networking.networkmanager.enable = true; # Use networkmanager
-  networking.wireless.enable = true;
 
   # Timezone and locale
   time.timeZone = systemSettings.timezone; # time zone

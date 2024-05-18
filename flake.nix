@@ -15,11 +15,12 @@
       userSettings = rec {
         username = "ben"; # username
         name = "Ben"; # name/identifier
-        email = "bmwagner@proton.me"; # email (used for certain configurations)
+        email = "64104085+bmwagner18@users.noreply.github.com"; # email (used for certain configurations)
         nixconfigsDir = "~/.nix-configs"; # absolute path of the local repo
       };
 
-      lib = nixpkgs.legacypackages.${system};
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
 
     in {
       homeConfigurations = {
@@ -30,10 +31,8 @@
           ];
           extraSpecialArgs = {
             # pass config variables from above
-            inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
-            inherit inputs;
           };
         };
       };
@@ -47,10 +46,8 @@
           ];
           specialArgs = {
             # pass config variables from above
-            inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
-            inherit inputs;
           };
         };
       };

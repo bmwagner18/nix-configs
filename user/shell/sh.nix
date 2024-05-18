@@ -5,7 +5,7 @@ let
   myAliases = {
     ll = "ls -l";
     cat = "bat";
-    neofetch = "disfetch";
+    neofetch = "fastfetch";
     ".." = "cd ..";
   };
 
@@ -18,7 +18,7 @@ in
   };
 
   home.packages = with pkgs; [
-    disfetch
+    fastfetch
     bat
   ];
-};
+}
