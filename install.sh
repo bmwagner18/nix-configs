@@ -9,7 +9,7 @@ if [ $# -gt 0 ]
   else
     SCRIPT_DIR=~/.nix-configs
 fi
-nix-shell -p git --command "git clone https://github.com/bmwagner18/nix-configs $SCRIPT_DIR"
+# nix-shell -p git --command "git clone https://github.com/bmwagner18/nix-configs $SCRIPT_DIR"
 
 # Generate hardware config for new system
 sudo nixos-generate-config --show-hardware-config > $SCRIPT_DIR/system/hardware-configuration.nix

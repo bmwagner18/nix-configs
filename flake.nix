@@ -1,7 +1,7 @@
 {
   description = "Ben's flake";
 
-  outputs = { self, nixpkgs, home-manager ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -76,4 +76,4 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   };
-};
+}
