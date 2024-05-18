@@ -21,4 +21,4 @@ in
     disfetch
     bat
   ];
-};
+}

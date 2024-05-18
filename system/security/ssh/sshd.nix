@@ -10,5 +10,5 @@
       PermitRootLogin = "no";
     };
   };
-  users.users.${userSettings.username}.openssh.authorizedKeys.keyFiles = [ ./authorizedKeys ];
+  users.users.${userSettings.username}.openssh.authorizedKeys.keyFiles = [ ./authorizedkeys ];
 }

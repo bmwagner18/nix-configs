@@ -16,11 +16,16 @@
 
   home.stateVersion = "23.11";
 
+  # Home Manager needs to know unfree is ok too
+  nixpkgs.config.allowUnfree = true;
+
+
   home.packages = with pkgs; [
     # Core
     firefox
     joplin-desktop
     vscode
+    hello
 
     # Office
     # libreoffice-fresh
@@ -39,6 +44,6 @@
 
     # Engineering tools
     super-slicer-latest
-  ]
+  ];
 
 }
