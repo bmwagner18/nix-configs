@@ -20,6 +20,10 @@
   nixpkgs.config.allowUnfree = true;
 
 
+  # Home Manager needs to know unfree is ok too
+  nixpkgs.config.allowUnfree = true;
+
+
   home.packages = with pkgs; [
     # Core
     firefox
@@ -45,6 +49,7 @@
 
     # Engineering tools
     super-slicer-latest
+  ];
   ];
 
 }
