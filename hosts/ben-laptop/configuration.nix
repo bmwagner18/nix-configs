@@ -10,7 +10,7 @@
       ../../system/security/firewall.nix
       ../../system/security/ssh/sshd.nix
       # ../../system/wm/gnome.nix
-      ../../system/wm/plasma.nix
+      ../../system/wm/plasma6.nix
       ../../system/services/printing.nix
       ../../system/services/sound.nix
     ];

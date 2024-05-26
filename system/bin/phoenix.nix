@@ -48,7 +48,7 @@ let myScript = ''
           nix-collect-garbage --delete-older-than 30d;
         fi
         elif [ "$1" = "edit" ]; then
-        if ["$#" = 1 ]; then
+        if [ "$#" = 1 ]; then
           $EDITOR ''+userSettings.nixconfigsDir+''/hosts/$HOSTNAME/home.nix;
           exit 0;
         elif [ "$2" = flake ]; then
