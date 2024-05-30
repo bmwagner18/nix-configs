@@ -21,30 +21,30 @@
 
   home.packages = with pkgs; [
     # Core
-    firefox
-    joplin-desktop
-    vscode
-    alacritty
-    thunderbird
+    # firefox
+    # joplin-desktop
+    # vscode
+    # alacritty
+    # thunderbird
 
     # Office
-    libreoffice-fresh
-    wine
+    # libreoffice-fresh
+    # wine
 
     # Media
     jellyfin
     vlc
-    obs-studio
-    ffmpeg
-    losslesscut-bin
+    # obs-studio
+    # ffmpeg
+    # losslesscut-bin
     # audio-recorder
 
     # Communication
-    slack
-    discord
+    # slack
+    # discord
 
     # Engineering tools
-    super-slicer-latest
+    # super-slicer-latest
   ];
 
 }
