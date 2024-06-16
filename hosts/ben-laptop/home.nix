@@ -18,14 +18,19 @@
 
   # Home Manager needs to know unfree is ok too
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.allowUnfreePredicate = _: true;
 
   home.packages = with pkgs; [
     # Core
     firefox
     joplin-desktop
     vscode
+    protonmail-desktop
+
+    # Terminal
     alacritty
-    thunderbird
+    zellij
+    lazygit
 
     # Office
     libreoffice-fresh
@@ -38,6 +43,7 @@
     ffmpeg
     losslesscut-bin
     # audio-recorder
+    spotify
 
     # Communication
     slack

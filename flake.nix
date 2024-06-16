@@ -7,7 +7,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "ben-laptop"; # hostname (must have a corresponding folder in ./hosts)
-        timezone = "America/Chicago"; # select timezone
+        timezone = "America/New_York"; # select timezone
         locale = "en_US.UTF-8"; # select locale
       };
 

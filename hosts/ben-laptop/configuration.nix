@@ -13,6 +13,7 @@
       ../../system/wm/plasma6.nix
       ../../system/services/printing.nix
       ../../system/services/sound.nix
+      ../../system/app/virtualbox.nix
     ];
 
   # Fix nix path
