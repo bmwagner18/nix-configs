@@ -10,7 +10,6 @@
   imports = [
     ../../user/shell/sh.nix # bash config
     ../../user/app/git/git.nix # git config
-    ../../user/app/vpn/mullvad.nix
     ../../user/app/neovim/neovim.nix
   ];
 
@@ -25,7 +24,8 @@
     firefox
     joplin-desktop
     vscode
-    protonmail-desktop
+    betterbird 
+    protonmail-bridge-gui
 
     # Terminal
     alacritty
@@ -37,13 +37,14 @@
     wine
 
     # Media
-    jellyfin
+    jellyfin-media-player
     vlc
     obs-studio
     ffmpeg
     losslesscut-bin
-    # audio-recorder
     spotify
+    yt-dlp-light
+    tartube
 
     # Communication
     slack
@@ -51,6 +52,10 @@
 
     # Engineering tools
     super-slicer-latest
+
+    # Development
+    android-tools
+    android-udev-rules
   ];
 
 }

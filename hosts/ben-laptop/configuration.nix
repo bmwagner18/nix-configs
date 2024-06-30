@@ -13,7 +13,8 @@
       ../../system/wm/plasma6.nix
       ../../system/services/printing.nix
       ../../system/services/sound.nix
-      ../../system/app/virtualbox.nix
+      ../../system/services/bluetooth.nix
+      # ../../system/services/wireguard.nix
     ];
 
   # Fix nix path
@@ -60,7 +61,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "plugdev" ];
     packages = [];
     uid = 1000;
   };
