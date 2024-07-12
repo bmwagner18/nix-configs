@@ -1,12 +1,8 @@
-{
-  config,
-  pkgs,
-  userSettings,
-  ...
-}: {
+{ config, pkgs, userSettings, ... }: {
+
   # Where Home Manager will home manage
   home.username = userSettings.username;
-  home.homeDirectory = "/home/" + userSettings.username;
+  home.homeDirectory = "/home/"+userSettings.username;
 
   # Let it manage itself
   programs.home-manager.enable = true;
@@ -14,7 +10,9 @@
   imports = [
     ../../user/shell/sh.nix # bash config
     ../../user/app/git/git.nix # git config
-    ../../user/app/neovim/neovim.nix
+    # ../../user/shell/nixvim.nix
+    ../../user/shell/neovim.nix
+    ../../user/shell/zellij.nix
   ];
 
   home.stateVersion = "23.11";
@@ -28,17 +26,15 @@
     firefox
     joplin-desktop
     vscode
-    betterbird
+    betterbird 
     protonmail-bridge-gui
 
     # Terminal
     alacritty
-    zellij
     lazygit
 
     # Office
     libreoffice-fresh
-    wine
 
     # Media
     jellyfin-media-player
@@ -61,4 +57,5 @@
     android-tools
     android-udev-rules
   ];
+
 }
