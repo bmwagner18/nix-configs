@@ -1,6 +1,4 @@
-{ userSettings, ... }:
-
-{
+{userSettings, ...}: {
   # Enable incoming ssh
   services.openssh = {
     enable = true;
@@ -10,5 +8,5 @@
       PermitRootLogin = "no";
     };
   };
-  users.users.${userSettings.username}.openssh.authorizedKeys.keyFiles = [ ./authorizedkeys ];
+  users.users.${userSettings.username}.openssh.authorizedKeys.keyFiles = [./authorizedkeys];
 }

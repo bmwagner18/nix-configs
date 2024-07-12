@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let
-
+{pkgs, ...}: let
   # Shell aliases
   myAliases = {
     ll = "ls -l";
@@ -8,9 +6,7 @@ let
     neofetch = "fastfetch";
     ".." = "cd ..";
   };
-
-in
-{
+in {
   programs.bash = {
     enable = true;
     enableCompletion = true;

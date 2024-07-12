@@ -1,27 +1,35 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, lib, systemSettings, userSettings, ... }:
 {
-  imports =
-    [ ../../system/hardware-configuration.nix
-      ( import ../../system/app/docker.nix {storageDriver = null; inherit pkgs userSettings lib;} )
-      ../../system/security/firewall.nix
-      ../../system/security/ssh/sshd.nix
-      # ../../system/wm/gnome.nix
-      ../../system/wm/plasma6.nix
-      ../../system/services/printing.nix
-      ../../system/services/sound.nix
-      # ../../system/services/bluetooth.nix
-      # ../../system/services/wireguard.nix
-    ];
+  pkgs,
+  lib,
+  systemSettings,
+  userSettings,
+  ...
+}: {
+  imports = [
+    ../../system/hardware-configuration.nix
+    (import ../../system/app/docker.nix {
+      storageDriver = null;
+      inherit pkgs userSettings lib;
+    })
+    ../../system/security/firewall.nix
+    ../../system/security/ssh/sshd.nix
+    # ../../system/wm/gnome.nix
+    ../../system/wm/plasma6.nix
+    ../../system/services/printing.nix
+    ../../system/services/sound.nix
+    # ../../system/services/bluetooth.nix
+    # ../../system/services/wireguard.nix
+  ];
 
   # Fix nix path
-  nix.nixPath = [ "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-                  "nixos-config=$HOME/.nix-configs/system/configuration.nix"
-                  "/nix/var/nix/profiles/per-user/root/channels"
-                ];
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=$HOME/.nix-configs/system/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
 
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
@@ -32,7 +40,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Kernel modules
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" "cpufreq_powersave" ];
+  boot.kernelModules = ["i2c-dev" "i2c-piix4" "cpufreq_powersave"];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -61,7 +69,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "docker" "plugdev" ];
+    extraGroups = ["networkmanager" "wheel" "docker" "plugdev"];
     packages = [];
     uid = 1000;
   };

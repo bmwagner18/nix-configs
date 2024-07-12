@@ -1,8 +1,12 @@
-{ config, pkgs, userSettings, ... }: {
-
+{
+  config,
+  pkgs,
+  userSettings,
+  ...
+}: {
   # Where Home Manager will home manage
   home.username = userSettings.username;
-  home.homeDirectory = "/home/"+userSettings.username;
+  home.homeDirectory = "/home/" + userSettings.username;
 
   # Let it manage itself
   programs.home-manager.enable = true;
@@ -46,5 +50,4 @@
     # Engineering tools
     # super-slicer-latest
   ];
-
 }

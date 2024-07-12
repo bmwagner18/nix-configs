@@ -1,8 +1,12 @@
-{ config, pkgs, userSettings, ... }: {
-
+{
+  config,
+  pkgs,
+  userSettings,
+  ...
+}: {
   # Where Home Manager will home manage
   home.username = userSettings.username;
-  home.homeDirectory = "/home/"+userSettings.username;
+  home.homeDirectory = "/home/" + userSettings.username;
 
   # Let it manage itself
   programs.home-manager.enable = true;
@@ -24,7 +28,7 @@
     firefox
     joplin-desktop
     vscode
-    betterbird 
+    betterbird
     protonmail-bridge-gui
 
     # Terminal
@@ -34,7 +38,6 @@
 
     # Office
     libreoffice-fresh
-    wine
 
     # Media
     jellyfin-media-player
@@ -49,6 +52,7 @@
     # Communication
     slack
     discord
+    nextcloud-client
 
     # Engineering tools
     super-slicer-latest
@@ -57,5 +61,4 @@
     android-tools
     android-udev-rules
   ];
-
 }
