@@ -1,81 +1,112 @@
 {
-  description = "Ben's flake";
+  description = "Ben's shiny new flake";
 
-  outputs = { self, nixpkgs, home-manager, ... }:
-    let
-      # ---- SYSTEM SETTINGS ---- #
-      systemSettings = {
-        system = "x86_64-linux"; # system arch
-        hostname = "ben-pc"; # hostname (must have a corresponding folder in ./hosts)
-        timezone = "America/New_York"; # select timezone
-        locale = "en_US.UTF-8"; # select locale
-        bootMode = "bios"; # uefi or bios
-        bootMountPath = "/"; # mount path for efi boot partition; only used for uefi boot mode
-        grubDevice = "/dev/sda"; # device identifier for grub; only used for legacy (bios) boot mode
+  outputs = inputs @ {self, ...}: let
+    # ---- SYSTEM SETTINGS ---- #
+    systemSettings = {
+      system = "x86_64-linux"; # system arch
+      hostname = "ben-laptop"; # hostname
+      profile = "laptop"; # corresponds to profile in profiles directory
+      release = "unstable"; # stable or unstable
+      timezone = "America/New_York";
+      locale = "en_US.UTF-8";
+      bootMode = "uefi"; # uefi or bios
+      bootMountPath = "/boot"; # mount point for EFI boots
+      grubDevice = ""; # grub device for bios boot mode
+    };
+
+    # ---- USER SETTINGS ---- #
+    userSettings = {
+      username = "ben"; # username for home-manager
+      name = "Ben"; # name or identifier
+      email = "64104085+bmwagner18@users.noreply.github.com";
+      nixconfigsDir = "~/nix-configs"; # where this flake is located
+    };
+
+    # Configure pkgs
+    pkgs-stable = import inputs.nixpkgs-stable {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _:true;
       };
+    };
 
-      # ----- USER SETTINGS ----- #
-      userSettings = rec {
-        username = "ben"; # username
-        name = "Ben"; # name/identifier
-        email = "64104085+bmwagner18@users.noreply.github.com"; # email (used for certain configurations)
-        nixconfigsDir = "/home/ben/nix-configs"; # absolute path of the local repo
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _:true;
       };
+    };
 
-      lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
-in {
-      homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-             (./. + "/hosts" + ("/" + systemSettings.hostname) + "/home.nix")
-          ];
-          extraSpecialArgs = {
-            # pass config variables from above
-            inherit systemSettings;
-            inherit userSettings;
-          };
+    pkgs =
+      if (systemSettings.release == "stable")
+      then pkgs-stable
+      else pkgs-unstable;
+
+    # Configure lib based on preferred release
+    lib =
+      if (systemSettings.release == "stable")
+      then inputs.nixpkgs-stable.lib
+      else inputs.nixpkgs-unstable.lib;
+
+    # Configure home-manager based on preferred release
+    home-manager =
+      if (systemSettings.release == "stable")
+      then inputs.home-manager-stable
+      else inputs.home-manager-unstable;
+    # Systems that can run tests:
+    # supportedSystems = ["aarch64-linux" "i686-linux" "x86_64-linux"];
+    # Function to generate a set based on supported systems
+    # forAllSystems = inputs.nixpkgs-unstable.lib.genAttrs supportedSystems;
+    # Attribute set of nixpkgs for each system
+    # nixpkgsFor =
+    # forAllSystems (system: import inputs.nixpkgs-unstable {inherit system;});
+  in {
+    nixosConfigurations = {
+      system = lib.nixosSystem {
+        system = systemSettings.system;
+        # Load configuration.nix based on profile
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+	  ./system/bin/phoenix.nix
+        ];
+        specialArgs = {
+          # allow stable packages to be used on unstable systems
+          inherit pkgs-stable;
+          inherit systemSettings;
+          inherit userSettings;
+          inherit inputs;
         };
       };
+    };
 
-      nixosConfigurations = {
-        system = lib.nixosSystem {
-          system = systemSettings.system;
-          modules = [
-            (./. + "/hosts" + ("/" + systemSettings.hostname) + "/configuration.nix")
-            ./system/bin/phoenix.nix
-          ];
-          specialArgs = {
-            # pass config variables from above
-            inherit systemSettings;
-            inherit userSettings;
-          };
+    homeConfigurations = {
+      user = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        # Load home.nix based on profile
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+        ];
+        extraSpecialArgs = {
+          # allow stable packages to be used on unstable systems
+          inherit pkgs-stable;
+          inherit systemSettings;
+          inherit userSettings;
+          inherit inputs;
         };
       };
-
-      # This *should* automate the installation when this command is run:
-      # nix-shell -p git --command "nix run --experimental-features 'nix-command flakes' github:bmwagner18/nix-configs"
-# z      packages = forAllSystems (system:
-#         let pkgs = nixpkgsFor.${system};
-#         in {
-#           default = self.packages.${system}.install;
-
-#           install = pkgs.writeShellApplication {
-#             name = "install";
-#             runtimeInputs = with pkgs; [ git ]; # I could make this fancier by adding other deps
-#             text = ''${./install.sh} "$@"'';
-#           };
-#         });
+    };
+  };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
-    # nixvim.url = "github:nix-community/nixvim";
-    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    home-manager-unstable.url = "github:nix-community/home-manager/master";
+    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
+    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 }

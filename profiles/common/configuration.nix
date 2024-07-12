@@ -10,24 +10,24 @@
 }: {
   imports = [
     ../../system/hardware-configuration.nix
-    (import ../../system/app/docker.nix {
-      storageDriver = null;
-      inherit pkgs userSettings lib;
-    })
+    # (import ../../system/app/docker.nix {
+      # storageDriver = null;
+      # inherit pkgs userSettings lib;
+    # })
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
     # ../../system/wm/gnome.nix
     ../../system/wm/plasma6.nix
     ../../system/services/printing.nix
     ../../system/services/sound.nix
-    ../../system/services/bluetooth.nix
+    # ../../system/services/bluetooth.nix
     # ../../system/services/wireguard.nix
   ];
 
   # Fix nix path
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "nixos-config=$HOME/.nix-configs/system/configuration.nix"
+    "nixos-config=$HOME/nix-configs/system/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
@@ -43,8 +43,21 @@
   boot.kernelModules = ["i2c-dev" "i2c-piix4" "cpufreq_powersave"];
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Use systemd-boot if uefi, default to grub otherwise
+  boot.loader.systemd-boot.enable =
+    if (systemSettings.bootMode == "uefi")
+    then true
+    else false;
+  boot.loader.efi.canTouchEfiVariables =
+    if (systemSettings.bootMode == "uefi")
+    then true
+    else false;
+  boot.loader.efi.efiSysMountPoint = systemSettings.bootMountPath; # does nothing if running bios rather than uefi
+  boot.loader.grub.enable =
+    if (systemSettings.bootMode == "uefi")
+    then false
+    else true;
+  boot.loader.grub.device = systemSettings.grubDevice; # does nothing if running uefi rather than bios
 
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -69,7 +82,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = ["networkmanager" "wheel" "docker" "plugdev"];
+    extraGroups = ["networkmanager" "wheel" "docker" "plugdev" "input" "dialout"];
     packages = [];
     uid = 1000;
   };
@@ -81,7 +94,6 @@
     git
     home-manager
     wpa_supplicant
-    bottles
   ];
 
   system.stateVersion = "23.11";

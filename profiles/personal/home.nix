@@ -14,40 +14,54 @@
   imports = [
     ../../user/shell/sh.nix # bash config
     ../../user/app/git/git.nix # git config
-    ../../user/app/vpn/mullvad.nix
-    ../../user/app/neovim/neovim.nix
+    # ../../user/shell/nixvim.nix
+    ../../user/shell/neovim.nix
+    ../../user/shell/zellij.nix
   ];
 
   home.stateVersion = "23.11";
 
   # Home Manager needs to know unfree is ok too
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.allowUnfreePredicate = _: true;
 
   home.packages = with pkgs; [
     # Core
-    # firefox
-    # joplin-desktop
-    # vscode
-    # alacritty
-    # thunderbird
+    firefox
+    joplin-desktop
+    vscode
+    betterbird
+    protonmail-bridge-gui
+
+    # Terminal
+    alacritty
+    lazygit
+    alejandra
 
     # Office
-    # libreoffice-fresh
-    # wine
+    libreoffice-fresh
 
     # Media
-    jellyfin
+    jellyfin-media-player
     vlc
-    # obs-studio
-    # ffmpeg
-    # losslesscut-bin
-    # audio-recorder
+    obs-studio
+    ffmpeg
+    losslesscut-bin
+    spotify
+    # yt-dlp-light
+    # tartube
 
     # Communication
-    # slack
-    # discord
+    slack
+    discord
 
     # Engineering tools
-    # super-slicer-latest
+    super-slicer-latest
+
+    # Development
+    android-tools
+    android-udev-rules
   ];
+
+  news.display = "silent";
 }
