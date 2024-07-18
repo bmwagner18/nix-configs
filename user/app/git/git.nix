@@ -10,6 +10,6 @@
   programs.git.userEmail = userSettings.email;
   programs.git.extraConfig = {
     init.defaultBranch = "main";
-    safe.directory = "/home/" + userSettings.username + "/.nix-configs";
+    safe.directory = "/home/" + userSettings.username + "/nix-configs";
   };
 }
