@@ -56,6 +56,11 @@
       if (systemSettings.release == "stable")
       then inputs.home-manager-stable
       else inputs.home-manager-unstable;
+
+    nixvim-pkgs = import inputs.nixvim {
+      system = systemSettings.system;
+    };
+
     # Systems that can run tests:
     # supportedSystems = ["aarch64-linux" "i686-linux" "x86_64-linux"];
     # Function to generate a set based on supported systems
@@ -63,6 +68,7 @@
     # Attribute set of nixpkgs for each system
     # nixpkgsFor =
     # forAllSystems (system: import inputs.nixpkgs-unstable {inherit system;});
+
   in {
     nixosConfigurations = {
       system = lib.nixosSystem {
@@ -92,6 +98,7 @@
         extraSpecialArgs = {
           # allow stable packages to be used on unstable systems
           inherit pkgs-stable;
+	  inherit nixvim-pkgs;
           inherit systemSettings;
           inherit userSettings;
           inherit inputs;
@@ -108,5 +115,13 @@
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    # nixvim-unstable.url = "github:nix-community/nixvim";
+    # nixvim-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # nixvim-stable.url = "github:nix-community/nixvim/nixos-24.05"
+    # nixvim-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 }

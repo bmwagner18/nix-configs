@@ -13,9 +13,9 @@
 
   imports = [
     ../../user/shell/sh.nix # bash config
-    ../../user/app/git/git.nix # git config
-    # ../../user/shell/nixvim.nix
-    ../../user/shell/neovim.nix
+    ../../user/shell/git.nix # git config
+    ../../user/shell/neovim/nixvim.nix
+    # ../../user/shell/neovim.nix
     ../../user/shell/zellij.nix
   ];
 

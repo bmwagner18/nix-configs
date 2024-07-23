@@ -31,6 +31,8 @@
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
+  services.tailscale.enable = true;
+
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''

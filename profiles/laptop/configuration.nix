@@ -9,6 +9,7 @@
   imports = [
     ../common/configuration.nix # Import common config between laptops and desktops
     # ~/nix-configs/profiles/common/configuration.nix
+    ../../system/services/bluetooth.nix
   ];
 
   # System packages

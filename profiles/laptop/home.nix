@@ -6,11 +6,11 @@
 }: {
   imports = [
     ../common/home.nix
-    # ~/nix-configs/profiles/commmon/home.nix
+    ../../user/app/browser/librewolf.nix
   ];
 
   home.packages = with pkgs; [
     # qutebrowser
-    yt-dlp
+    gimp-with-plugins
   ];
 }
