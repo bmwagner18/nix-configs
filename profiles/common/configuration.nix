@@ -10,7 +10,7 @@
 }: {
   imports = [
     ../../system/hardware-configuration.nix
-    # (import ../../system/app/docker.nix {
+    # (import ../../system/tui/docker.nix {
       # storageDriver = null;
       # inherit pkgs userSettings lib;
     # })

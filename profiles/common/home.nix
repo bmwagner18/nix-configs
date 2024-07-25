@@ -12,11 +12,11 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ../../user/shell/sh.nix # bash config
-    ../../user/shell/git.nix # git config
-    ../../user/shell/neovim/nixvim.nix
-    # ../../user/shell/neovim.nix
-    ../../user/shell/zellij.nix
+    ../../user/tui/sh.nix # bash config
+    ../../user/tui/git.nix # git config
+    ../../user/tui/neovim/nixvim.nix
+    # ../../user/tui/neovim.nix
+    ../../user/tui/zellij.nix
   ];
 
   home.stateVersion = "23.11";

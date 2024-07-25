@@ -6,7 +6,7 @@
 }: {
   imports = [
     ../common/home.nix
-    ../../user/app/browser/librewolf.nix
+    ../../user/gui/browser/librewolf.nix
   ];
 
   home.packages = with pkgs; [
