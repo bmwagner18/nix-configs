@@ -40,6 +40,7 @@
 
     # Office
     libreoffice-fresh
+    nextcloud-client
 
     # Media
     jellyfin-media-player

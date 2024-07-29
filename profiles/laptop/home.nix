@@ -12,5 +12,6 @@
   home.packages = with pkgs; [
     # qutebrowser
     gimp-with-plugins
+    qownnotes
   ];
 }

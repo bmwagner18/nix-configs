@@ -22,6 +22,7 @@
     ../../system/services/sound.nix
     # ../../system/services/bluetooth.nix
     # ../../system/services/wireguard.nix
+    ../../system/services/sops.nix
   ];
 
   # Fix nix path
@@ -31,7 +32,7 @@
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
-  services.tailscale.enable = true;
+  # services.tailscale.enable = true;
 
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
