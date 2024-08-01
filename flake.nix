@@ -5,14 +5,14 @@
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
       system = "x86_64-linux"; # system arch
-      hostname = "ben-laptop"; # hostname
-      profile = "laptop"; # corresponds to profile in profiles directory
+      hostname = "homelab-nix"; # hostname
+      profile = "homelab"; # corresponds to profile in profiles directory
       release = "unstable"; # stable or unstable
       timezone = "America/New_York";
       locale = "en_US.UTF-8";
-      bootMode = "uefi"; # uefi or bios
-      bootMountPath = "/boot"; # mount point for EFI boots
-      grubDevice = ""; # grub device for bios boot mode
+      bootMode = "bios"; # uefi or bios
+      bootMountPath = "/"; # mount point for EFI boots
+      grubDevice = "/dev/sda"; # grub device for bios boot mode
     };
 
     # ---- USER SETTINGS ---- #

@@ -16,7 +16,6 @@
     # })
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
-    ../../system/services/sops.nix
     ../../system/services/nextcloud.nix
   ];
 
@@ -57,7 +56,7 @@
 
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
-  networking.networkmanager.enable = true; # Use networkmanager
+  # networking.networkmanager.enable = true; # Use networkmanager
 
   # Timezone and locale
   time.timeZone = systemSettings.timezone; # time zone
