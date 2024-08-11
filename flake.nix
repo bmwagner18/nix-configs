@@ -4,15 +4,15 @@
   outputs = inputs @ {self, ...}: let
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
-      system = "x86_64-linux"; # system arch
-      hostname = "homelab-nix"; # hostname
-      profile = "homelab"; # corresponds to profile in profiles directory
-      release = "unstable"; # stable or unstable
+      system = "aarch64-linux"; # system arch
+      hostname = "pi_backup"; # hostname
+      profile = "backup"; # corresponds to profile in profiles directory
+      release = "stable"; # stable or unstable
       timezone = "America/New_York";
       locale = "en_US.UTF-8";
-      bootMode = "bios"; # uefi or bios
-      bootMountPath = "/"; # mount point for EFI boots
-      grubDevice = "/dev/sda"; # grub device for bios boot mode
+      bootMode = ""; # uefi or bios (does nothing for backup profile)
+      bootMountPath = ""; # mount point for EFI boots (does nothing for backup profile)
+      grubDevice = ""; # grub device for bios boot mode (does nothing for backup profile)
     };
 
     # ---- USER SETTINGS ---- #
@@ -120,15 +120,15 @@
     home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    # nixvim.inputs.nixpkgs.follows = "nixpkgs-stable";
     # nixvim-unstable.url = "github:nix-community/nixvim";
     # nixvim-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     # nixvim-stable.url = "github:nix-community/nixvim/nixos-24.05"
     # nixvim-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
     sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs-stable";
     # inputs.sops-nix.url = "github:Mic92/sops-nix";
     # inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
