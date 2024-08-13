@@ -10,13 +10,9 @@
 }: {
   imports = [
     ../../system/hardware-configuration.nix
-    # (import ../../system/tui/docker.nix {
-      # storageDriver = null;
-      # inherit pkgs userSettings lib;
-    # })
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
-    # ../../system/services/nextcloud.nix
+    ../../system/services/rdiff/systemd.nix
   ];
 
   # Fix nix path
@@ -36,12 +32,12 @@
 
   # Kernel modules
   boot.kernelModules = ["i2c-dev" "i2c-piix4" "cpufreq_powersave"];
-  
+
   # Bootloader
   # Raspberry pi uses generic linux bootloader
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
-  
+
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
   networking.networkmanager.enable = true; # Use networkmanager
@@ -77,6 +73,7 @@
     git
     home-manager
     wpa_supplicant
+    # rdiff-backup
   ];
 
   system.stateVersion = "23.11";
