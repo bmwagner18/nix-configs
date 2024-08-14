@@ -13,5 +13,6 @@
     # qutebrowser
     gimp-with-plugins
     qownnotes
+    mqttx
   ];
 }

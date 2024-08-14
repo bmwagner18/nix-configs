@@ -22,7 +22,7 @@
     ../../system/services/sound.nix
     # ../../system/services/bluetooth.nix
     # ../../system/services/wireguard.nix
-    ../../system/services/sops.nix
+    ../../secrets/sops.nix
   ];
 
   # Fix nix path
@@ -97,6 +97,7 @@
     git
     home-manager
     wpa_supplicant
+    rdiff-backup
   ];
 
   system.stateVersion = "23.11";
