@@ -4,15 +4,15 @@
   outputs = inputs @ {self, ...}: let
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
-      system = "aarch64-linux"; # system arch
-      hostname = "pi_backup"; # hostname
-      profile = "backup"; # corresponds to profile in profiles directory
-      release = "stable"; # stable or unstable
+      system = "x86_64-linux"; # system arch
+      hostname = "ben-laptop"; # hostname
+      profile = "laptop"; # corresponds to profile in profiles directory
+      release = "unstable"; # stable or unstable
       timezone = "America/New_York";
       locale = "en_US.UTF-8";
-      bootMode = ""; # uefi or bios (does nothing for backup profile)
-      bootMountPath = ""; # mount point for EFI boots (does nothing for backup profile)
-      grubDevice = ""; # grub device for bios boot mode (does nothing for backup profile)
+      bootMode = "uefi"; # uefi or bios
+      bootMountPath = "/boot"; # mount point for EFI boots
+      grubDevice = ""; # grub device for bios boot mode
     };
 
     # ---- USER SETTINGS ---- #
