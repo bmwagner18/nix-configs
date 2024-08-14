@@ -12,7 +12,8 @@
     ../../system/hardware-configuration.nix
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
-    ../../system/services/rdiff/systemd.nix
+    # ../../system/services/rdiff/systemd.nix
+    ../../system/services/pibackup.nix
   ];
 
   # Fix nix path
@@ -73,7 +74,6 @@
     git
     home-manager
     wpa_supplicant
-    # rdiff-backup
   ];
 
   system.stateVersion = "23.11";
