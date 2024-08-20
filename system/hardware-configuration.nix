@@ -5,37 +5,42 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/50e7e957-c470-42cb-9573-0845f18a1b2a";
+    { device = "/dev/disk/by-uuid/5f72b33b-4a11-4c5c-ab89-1adf16945770";
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/notflix" =
-    { device = "192.168.35.20:/mnt/zues/notflix";
-      fsType = "nfs";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/C655-E417";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/nextcloud" =
-    { device = "192.168.35.20:/mnt/zues/nextcloud";
-      fsType = "nfs";
-    };
-
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/61e5f85c-836b-41a2-81e5-cb8234699346"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-17c677be2e62.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-d01dbfe14d91.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-ef5b0cac80c7.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.incusbr0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth1be13d9.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
