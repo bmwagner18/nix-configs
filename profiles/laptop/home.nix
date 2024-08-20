@@ -14,5 +14,7 @@
     gimp-with-plugins
     qownnotes
     mqttx
+    arduino-ide
+    chromium
   ];
 }

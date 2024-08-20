@@ -10,10 +10,6 @@
 }: {
   imports = [
     ../../system/hardware-configuration.nix
-    # (import ../../system/tui/docker.nix {
-      # storageDriver = null;
-      # inherit pkgs userSettings lib;
-    # })
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
     # ../../system/wm/gnome.nix
