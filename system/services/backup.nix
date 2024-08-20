@@ -23,6 +23,7 @@
       ${pkgs.rsync}/bin/rsync -a -P --mkpath /var/lib/nextcloud/data/ /home/ben/backups/nextcloud/data/
       ${pkgs.rsync}/bin/rsync -a -P --mkpath /var/lib/nextcloud/config/ /home/ben/backups/nextcloud/config/
       ${pkgs.rsync}/bin/rsync -a -P --mkpath /var/backup/postgresql/ /home/ben/backups/nextcloud/postgresqlBackup/
+      ${pkgs.rsync}/bin/rsync -a -P --mkpath /var/lib/sabnzbd/ /home/ben/backups/Sabnzbd/
 
       chown ben:users -R /home/ben/backups/
     '';

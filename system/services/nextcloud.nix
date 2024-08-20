@@ -18,7 +18,7 @@
   };
 
   # Import secrets from sops
-  sops.secrets.nextcloud_env = {};
+  sops.secrets.cloudflare_env = {};
   sops.secrets.nextcloud_adminpassword = {
     owner = "nextcloud";
   };
@@ -31,7 +31,7 @@
       dnsProvider = "cloudflare";
       # location of your CLOUDFLARE_DNS_API_TOKEN=[value]
       # https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#EnvironmentFile=
-      environmentFile = "/run/secrets/nextcloud_env";
+      environmentFile = "/run/secrets/cloudflare_env";
     };
   };
 
