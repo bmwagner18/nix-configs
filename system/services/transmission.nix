@@ -1,7 +1,11 @@
 # Auto-generated using compose2nix v0.2.2-pre.
 { pkgs, lib, ... }:
-
 {
+  # Depends on sops and the secrets in there
+  imports = [ ../../secrets/sops.nix ];
+  sops.secrets.gluetun_private_key = {};
+  sops.secrets.gluetun_address = {};
+
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -19,9 +23,11 @@
       "TZ" = "America/New_York";
       "VPN_SERVICE_PROVIDER" = "mullvad";
       "VPN_TYPE" = "wireguard";
-      "WIREGUARD_ADDRESSES" = "10.65.132.49/32";
-      "WIREGUARD_PRIVATE_KEY" = "aBfBhgAfINOSU9EQ6YBNmDVr5L1uMpUdby5m1AQnMVA=";
     };
+    volumes = [
+      "/run/secrets/gluetun_address:/run/secrets/wireguard_addresses:rw"
+      "/run/secrets/gluetun_private_key:/run/secrets/wireguard_private_key:rw"
+    ];
     ports = [
       "9091:9091/tcp"
       "51413:51413/tcp"
@@ -63,8 +69,8 @@
       "TZ" = "America/New_York";
     };
     volumes = [
+      "/mnt/notflix/downloads/torrents:/downloads:rw"
       "transmission_config:/config:rw"
-      "transmission_data:/downloads:rw"
     ];
     dependsOn = [
       "gluetun"
@@ -83,11 +89,9 @@
     };
     after = [
       "docker-volume-transmission_config.service"
-      "docker-volume-transmission_data.service"
     ];
     requires = [
       "docker-volume-transmission_config.service"
-      "docker-volume-transmission_data.service"
     ];
     partOf = [
       "docker-compose-transmission-root.target"
@@ -125,18 +129,6 @@
     partOf = [ "docker-compose-transmission-root.target" ];
     wantedBy = [ "docker-compose-transmission-root.target" ];
   };
-  systemd.services."docker-volume-transmission_data" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker volume inspect transmission_data || docker volume create transmission_data
-    '';
-    partOf = [ "docker-compose-transmission-root.target" ];
-    wantedBy = [ "docker-compose-transmission-root.target" ];
-  };
 
   # Root service
   # When started, this will automatically create all resources and start
@@ -147,6 +139,4 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-  # Open firewall for peer connections???
-  # networking.firewall.interfaces.???
 }

@@ -19,8 +19,9 @@
   sops.age.keyFile = ("/home" + ("/" + userSettings.username) + "/.config/sops/age/keys.txt");
 
   # Import secrets as shown below in the module that will use them
+  # sops.secrets.hello = {};
   # sops.secrets.hello = {
-    # owner = userSettings.username; # adding a user as an owner
+    # owner = userSettings.username; # adding a user as an owner instead of root
   # };
 
   # Include sops to edit secrets
