@@ -42,7 +42,7 @@ for system in current_backup:
         continue
     for location in current_backup[system]:
         backup_location = backup_dir + system + location
-        command_list = ["rdiff-backup", "--api-version", "201", "backup", "--create-full-path"]
+        command_list = ["rdiff-backup", "--remove-older-than", "50B", "--api-version", "201", "backup", "--create-full-path"]
         if isinstance(current_backup[system], dict):
             includes = current_backup[system][location].get("include")
             excludes = current_backup[system][location].get("exclude")

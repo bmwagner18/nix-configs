@@ -24,6 +24,7 @@ in
       serviceConfig = {
         Type = "oneshot";
         User = "${userSettings.username}";
+        Environment = "PATH=${pkgs.rdiff-backup}/bin:${myPythonEnv}/bin:${pkgs.python3}/bin:${pkgs.stdenv.cc}/bin:${pkgs.stdenv.cc}/lib";
       };
     };
     "daily_rdiff" = {
@@ -33,6 +34,7 @@ in
       serviceConfig = {
         Type = "oneshot";
         User = "${userSettings.username}";
+        Environment = "PATH=${pkgs.rdiff-backup}/bin:${myPythonEnv}/bin:${pkgs.python3}/bin:${pkgs.stdenv.cc}/bin:${pkgs.stdenv.cc}/lib";
       };
     };
     "weekly_rdiff" = {
@@ -42,6 +44,7 @@ in
       serviceConfig = {
         Type = "oneshot";
         User = "${userSettings.username}";
+        Environment = "PATH=${pkgs.rdiff-backup}/bin:${myPythonEnv}/bin:${pkgs.python3}/bin:${pkgs.stdenv.cc}/bin:${pkgs.stdenv.cc}/lib";
       };
     };
   };

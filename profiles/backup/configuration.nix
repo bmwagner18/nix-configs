@@ -74,6 +74,7 @@
     git
     home-manager
     wpa_supplicant
+    # rdiff-backup
   ];
 
   system.stateVersion = "23.11";
