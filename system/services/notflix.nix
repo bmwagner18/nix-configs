@@ -4,6 +4,7 @@
     ../../secrets/sops.nix
     # ../../system/services/mullvad.nix
     ./backup.nix
+    ./transmission.nix
   ];
 
   sops.secrets.cloudflare_env = {};
@@ -98,18 +99,20 @@
       };
     };
     # Torrent downloader
-    transmission = {
+
+    # transmission is provided via ./transmission using docker and gluetun vpn
+    # transmission = {
       # enable = true;
       # package = pkgs.transmission_4;
       # openFirewall = true;
       # openRPCPort = true;
-      webHome = pkgs.flood-for-transmission;
-      settings = {
-        download-dir = "/mnt/notflix/downloads/torrents/complete";
-        incomplete-dir = "/mnt/notflix/downloads/torrents/incomplete";
-        peer-port = 51413;
-      };
-    };
+      # webHome = pkgs.flood-for-transmission;
+      #settings = {
+        # download-dir = "/mnt/notflix/downloads/torrents/complete";
+        # incomplete-dir = "/mnt/notflix/downloads/torrents/incomplete";
+        # peer-port = 51413;
+      # };
+    # };
     # Usenet downloader
     sabnzbd = {
       enable = true;

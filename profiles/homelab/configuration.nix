@@ -10,14 +10,14 @@
 }: {
   imports = [
     ../../system/hardware-configuration.nix
-    # (import ../../system/tui/docker.nix {
-      # storageDriver = null;
-      # inherit pkgs userSettings lib;
-    # })
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
     ../../system/services/nextcloud.nix
+    ../../system/services/notflix.nix
   ];
+
+  # Enable qemu-guest-agent for Proxmox virtualisation
+  services.qemuGuest.enable = true;
 
   # Fix nix path
   nix.nixPath = [
@@ -89,6 +89,8 @@
     git
     home-manager
     wpa_supplicant
+    rdiff-backup
+
   ];
 
   system.stateVersion = "23.11";
