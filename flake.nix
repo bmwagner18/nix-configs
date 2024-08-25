@@ -57,12 +57,12 @@
       then inputs.home-manager-stable
       else inputs.home-manager-unstable;
 
-    nixvim-pkgs = import inputs.nixvim {
-      system = systemSettings.system;
-    };
-    sops-nix-pkgs = import inputs.sops-nix {
-      system = systemSettings.system;
-    };
+    # nixvim-pkgs = import inputs.nixvim {
+      # system = systemSettings.system;
+    # };
+    # sops-nix-pkgs = import inputs.sops-nix {
+      # system = systemSettings.system;
+    # };
 
     # Systems that can run tests:
     # supportedSystems = ["aarch64-linux" "i686-linux" "x86_64-linux"];
@@ -101,8 +101,8 @@
         extraSpecialArgs = {
           # allow stable packages to be used on unstable systems
           inherit pkgs-stable;
-	      inherit nixvim-pkgs;
-          inherit sops-nix-pkgs;
+	      # inherit nixvim-pkgs;
+          # inherit sops-nix-pkgs;
           inherit systemSettings;
           inherit userSettings;
           inherit inputs;
@@ -131,6 +131,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-stable";
     # inputs.sops-nix.url = "github:Mic92/sops-nix";
     # inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
   };
 }

@@ -14,6 +14,7 @@
     ../../system/security/ssh/sshd.nix
     ../../system/services/nextcloud.nix
     ../../system/services/notflix.nix
+    ../../system/services/minecraft.nix
   ];
 
   # Enable qemu-guest-agent for Proxmox virtualisation
