@@ -7,11 +7,11 @@
 }: {
   imports = [
     ../common/configuration.nix # Import common config between laptops and desktops
-    # ~/nix-configs/profiles/common/configuration.nix
     ../../system/services/bluetooth.nix
-    ../../system/services/mullvad_toronto.nix
-    ../../system/services/incus.nix
-    ../../system/services/docker.nix
+    ../../system/security/mullvad-toronto.nix
+    # ../../system/tui/incus.nix
+    ../../system/tui/docker.nix
+    ../../system/security/home-wireguard.nix
   ];
 
   # System packages

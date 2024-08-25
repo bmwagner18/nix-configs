@@ -26,6 +26,9 @@
   # nixpkgs.allowUnfreePredicate = _: true;
 
   home.packages = with pkgs; [
+    # Games
+    prismlauncher
+
     # Core
     firefox
     joplin-desktop
