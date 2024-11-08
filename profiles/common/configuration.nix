@@ -9,17 +9,20 @@
   ...
 }: {
   imports = [
+    # (./. + "../../../system/wm"+("/"+userSettings.wm)+".nix")
     ../../system/hardware-configuration.nix
     ../../system/security/firewall.nix
     ../../system/security/ssh/sshd.nix
-    # ../../system/wm/gnome.nix
-    ../../system/wm/plasma6.nix
     ../../system/services/printing.nix
     ../../system/services/sound.nix
     # ../../system/services/bluetooth.nix
     # ../../system/services/wireguard.nix
     ../../secrets/sops.nix
+    # ../../system/wm/hyprland.nix
+    ../../system/wm/plasma.nix
   ];
+
+  services.tailscale.enable = true;
 
   # Fix nix path
   nix.nixPath = [
@@ -30,8 +33,15 @@
 
   # services.tailscale.enable = true;
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+
   # Ensure nix flakes are enabled
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixVersions.stable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

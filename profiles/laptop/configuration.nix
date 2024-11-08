@@ -17,6 +17,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     vim
+    motrix
   ];
 
   system.stateVersion = "23.11";

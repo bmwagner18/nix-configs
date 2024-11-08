@@ -12,6 +12,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    # (./. + "../../../user/wm"+("/"+userSettings.wm)+".nix")
     ../../user/tui/sh.nix # bash config
     ../../user/tui/git.nix # git config
     ../../user/tui/neovim/nixvim.nix
@@ -33,8 +34,9 @@
     firefox
     joplin-desktop
     vscode
-    betterbird
+    # betterbird
     protonmail-bridge-gui
+    joplin
 
     # Terminal
     alacritty
@@ -65,6 +67,7 @@
     # Development
     android-tools
     android-udev-rules
+    colmena
   ];
 
   news.display = "silent";
